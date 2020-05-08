@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://luyiminggonnabeok.cn/"/>
-  <updated>2020-05-04T11:36:48.040Z</updated>
+  <updated>2020-05-04T11:36:49.629Z</updated>
   <id>http://luyiminggonnabeok.cn/</id>
   
   <author>
@@ -15,30 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>v2ray梯子搭建教程</title>
-    <link href="http://luyiminggonnabeok.cn/2020/05/04/v2ray%E6%A2%AF%E5%AD%90%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/"/>
-    <id>http://luyiminggonnabeok.cn/2020/05/04/v2ray%E6%A2%AF%E5%AD%90%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</id>
-    <published>2020-05-04T00:38:44.000Z</published>
-    <updated>2020-05-04T11:36:48.040Z</updated>
-    
-    <content type="html"><![CDATA[<p>这篇文章之前写过一遍，但国内搜索引擎都爬不到，再改个名字新放一次。</p><blockquote><p>一年多前写了<a href="http://luyiminggonnabeok.cn/2018/08/10/%E5%8D%81%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84SSR%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E6%A2%AF%E5%AD%90/">一篇脚本搭建SSR梯子的教程</a>，比较简陋粗糙，而且其实写那篇教程的时候自己已经不用SSR了，主要是容易被识别然后被封ip，还是不太方便。最近一年多一直使用v2ray+tls+ws的方法科学上网，还是比较稳定，速度也不慢于SSR。最早使用的时候没有脚本，自己用apache做https的服务器做转发，配起来还是有些麻烦，之后Atrandy写了一键脚本，就方便多了，<a href="https://www.atrandys.com/" target="_blank" rel="noopener">Atrandy的博客</a>好像已经被墙了，今天主要参考他的博客，搬运一下，从域名注册开始写一个简单教程。</p></blockquote><h1 id="V2ray-tls-ws介绍"><a href="#V2ray-tls-ws介绍" class="headerlink" title="V2ray+tls+ws介绍"></a>V2ray+tls+ws介绍</h1><p>简要地说就是可以把你的科学上网行为变成正常的访问https网页，使得GFW很难得知你看起来是在正常上网其实是在科学上网，由于https使用TLS加密，所以与服务端的内容理论上是不可被解密的，既保证了数据安全又保证了行为安全。好吧说的可能不清晰，可以参考<a href="http://luyiminggonnabeok.cn/2018/11/14/Vmess-WebSocket-TLS-web%E9%85%8D%E7%BD%AE/">之前写的一篇文章</a>,也可以参考<a href="https://guide.v2fly.org/advanced/wss_and_web.html" target="_blank" rel="noopener">v2ray的通俗版教程</a>。</p><h1 id="购买VPS"><a href="#购买VPS" class="headerlink" title="购买VPS"></a>购买VPS</h1><p>虽然是一键脚本，但是使用脚本的前提还是你有个vps，和一个解析到vps的域名，首先来讲一下购买vps，现在可以购买vps的云平台很多，之前用的digitalocean,最主要的原因是因为可以随时删除重建服务器，等于可以随时更换被墙的ip。后来用<a href="https://www.vultr.com/?ref=8534836" target="_blank" rel="noopener">Vultr</a>了，因为发现除了和DO一样可以随时换ip，重点是还有日本的节点，而且支持支付宝，大陆使用日本的节点可以说速度飞快了。</p><p>首先注册vultr账号：<a href="https://www.vultr.com/?ref=8534836" target="_blank" rel="noopener">vultr注册</a></p><p>注册好第一次进去会提示让你完善信息，首次最少充值10刀，之后进入控制台界面，点击products，然后点右上角的加号添加server</p><p><img src="/images/pasted-41.png" alt="upload successful"></p><p>如图配置，server选哪里的都可以，但是强烈建议选日本的，真的比其他地方的快好多。。</p><p><img src="/images/pasted-42.png" alt="upload successful"></p><p>这里要注意了，默认系统是Centos8(Centos都出8了。。今天第一次发现), 脚本是Centos7环境下的，所以这里一定要选Centos7，之后配置选5刀的就可以，科学上网足够用了。</p><p><img src="/images/pasted-43.png" alt="upload successful"></p><p>选好了就可以deploy now了，之后会自动跳转到products节目，这时候你的server是installing的状态，等大概一分钟，就会running。</p><p>之后点右边的三个点（server刚起来也可能是叫manage，反正就是最右边的）进入server detail。（如果之后哪天ip真的被封了，也可以在这里点destroy然后重新建一个）</p><p><img src="/images/pasted-44.png" alt="upload successful"></p><p>这里是你的server的一些详细信息，<strong>记住你的ip address和password</strong>，密码需要点那个小眼睛才能看到。（大家可以看见这里月流量是1000G，我这个4个人用了大半个月也就用了100多G，所以5刀的流量足够了）</p><p><img src="/images/pasted-45.png" alt="upload successful"></p><p>到这里vps就做好了，进入下一步购买域名。</p><h1 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h1><p>买域名的地方也很多，国内主要是腾讯云和阿里云，域名不需要在国外供应商买，哪里买都一样。腾讯阿里都有新人优惠，第一次购买域名，像.club, .xyz之类的小众域名基本只要1块一年，很便宜了。我用的是腾讯云，这里也以腾讯云为例，其他平台的流程也基本一致。</p><p>首先进入<a href="https://cloud.tencent.com/" target="_blank" rel="noopener">腾讯云主页</a>, 先点右上角的免费注册，注册登陆之后再产品这里选域名注册，热门里就有。</p><p><img src="/images/pasted-46.png" alt="upload successful"></p><p>之后可以直接搜自己想要的域名，也可以直接点下面的1元域名优惠抢，首次注册都可以1块钱购买一年。（这里就不放图了，都是中文，应该很好操作了）</p><p>购买之后点右上角进入控制台，搜索云解析，进入这样一个界面。点击你自己的域名，或者点击右边域名对应的解析。（可以看到这里腾讯要求在国内开展网站需要备案，我们其实也相当于建立了一个网站，但是我的经验因为我们用国外的服务器所以不备案也没关系。）<br><img src="/images/pasted-48.png" alt="upload successful"></p><p>之后直接点击快速添加网站/邮箱解析，选择网站解析。之后输入刚才购买的vps的ip地址就好了，解析大概需要十分钟以内。</p><p><img src="/images/pasted-50.png" alt="upload successful"></p><p>到这里域名购买解析部分就结束了，可以进行下一步，也是核心的一步，在vps上用脚本安装v2ray。</p><h1 id="脚本安装v2ray服务端"><a href="#脚本安装v2ray服务端" class="headerlink" title="脚本安装v2ray服务端"></a>脚本安装v2ray服务端</h1><p>首先下载一个ssh软件，比如putty，（我会放软件包度盘链接在下面，如果失效了就自己百度吧）打开软件是酱婶儿的。填进去你的ip然后open。</p><p><img src="/images/pasted-51.png" alt="upload successful"><br>然后用root账号登陆（注意login as 后面是填写用户名的，不是密码，先填用户名root回车再写密码，虽然好像很罗嗦，我之前也没想过这里也需要讲，但是真的有许多人卡在这一步），密码就是刚才记下的密码，输进去，敲回车。（注意这里可以直接把密码复制过去，但是一定注意第一不要复制到了空格，第二鼠标在putty里敲右键就是黏贴了，不要再ctrl+v，密码也是不会显示的，输进去直接回车就好）</p><p>进入命令行后，直接复制输入以下代码进行脚本安装。</p><pre><code>curl -O https://raw.githubusercontent.com/atrandys/v2ray-ws-tls/master/v2ray_ws_tls.sh &amp;&amp; chmod +x v2ray_ws_tls.sh &amp;&amp; ./v2ray_ws_tls.sh</code></pre><p>之后选1，回车，因为脚本需要安装Nginx，比较慢，大概五六分钟，等待一下。过程中会提示需要输入域名，输入解析到本VPS的域名，然后回车。<br>漫长等待之后，会出现安装完成的信息，然后会有配置参数，这里需要记下来（复制下来，在putty里左键光标选中的字符就是已经被复制了，不用ctrl+c了）。</p><p>到这时候，用任意一个浏览器输入你刚才注册的域名，应该就可以看到一个这样的网站。理解为它就是我们翻墙的掩护就好。</p><p><img src="/images/pasted-52.png" alt="upload successful"></p><p>之后回到我们的putty界面，输入下面的代码安装BBR加速，安了会让科学上网速度提升很多。</p><pre><code>cd /usr/src &amp;&amp; wget -N --no-check-certificate &quot;https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; ./tcp.sh</code></pre><p>在弹出的界面选1，安装内核，安装完之后vps会重启，putty会断开连接，重启等待1到2分钟，在重复刚才的步骤用putty登陆vps，输入以下代码，在弹出的界面输入5，使用BBR。</p><pre><code>cd /usr/src &amp;&amp; ./tcp.sh</code></pre><p>之后显示BBR启动成功，这样我们服务端架设的步骤就完全完成了。</p><h1 id="客户端使用"><a href="#客户端使用" class="headerlink" title="客户端使用"></a>客户端使用</h1><p>v2ray的客户端很多，这里主要介绍win，ios，安卓下最常用的三个客户端软件。</p><h2 id="v2rayN-for-window"><a href="#v2rayN-for-window" class="headerlink" title="v2rayN for window"></a>v2rayN for window</h2><pre><code>链接: https://pan.baidu.com/s/1eT1M4RCAHLcl9h1xHYEgjg&amp;shfl=shareset提取码: 4nfs</code></pre><p>下载下来解压点进去文件夹，打开v2rayN.exe,右下角出现如下小图标：</p><p><img src="/images/pasted-54.png" alt="upload successful"></p><p>双击左键点开，选择服务器，添加vmess服务器。将之前在putty中记下的参数输入这里，如下图，然后点击确定。注意这里路径这一栏在之前记录的参数基础上前面加上“/”。如图。<br><img src="/images/pasted-55.png" alt="upload successful"><br>之后就配置成功了，建议在配好的服务器上单击右键选择“批量导出分享URL至粘贴板”，然后在记事本中保存，之后会用在配置手机客户端里。</p><p>之后点右上角×关闭主界面，在右下角小图标单击右键。在服务器一栏勾选上已经配好的服务器，点击启用Http代理，代理模式选择全局模式。之后就可以开心的科学上网了。提醒一下记得不用的时候，按顺序先把启用http代理勾选取消，之后退出客户端，最后关电脑。如果有没有按顺序操作，再次开机发现上不了网了，请在这里的小电脑点右键，打开“网络和Internet设置”→代理→手动设置代理，将使用代理服务器一栏关闭。</p><h2 id="Shadowrocket-for-ios"><a href="#Shadowrocket-for-ios" class="headerlink" title="Shadowrocket for ios"></a>Shadowrocket for ios</h2><p>其实V2ray在ios上最好用的客户端是Kitsunebi，可是在大陆App store里下不到，国外也是收费的。新版本的Shadowrocket也支持Vmess+TLS+ws的配置，所以我就用了Shadowrocket（以下就代称小火箭了），虽然小火箭也要钱，不能在大陆App store下载，但是网上共享账号很多，大家可以多搜一搜，关键词“Shadowrocket/小火箭 ios 共享账号”。我这里提供两组账号，大家试一试，不保证好用，因为这种多人共享的账号很容易被苹果封了，账号时效性很强，不好用大家就自己找找了。</p><pre><code>app store账号：hadadreammm@gmail.com密码：As778899app store账号：hadadreammm@gmail.com密码：As778899</code></pre><p>注意下完小火箭后一定马上把账号退了，换回自己的账号。</p><p>之后把刚才在电脑端导出的，形如vmess://开头的链接复制到手机里，在手机上直接复制，然后打开小火箭，小火箭就会自动识别到已经复制好的链接，将服务器添加进来，之后把最上面的链接打开就好了。（软件会要求使用手机vpn，请允许）</p><h2 id="BifrostV-for-Android"><a href="#BifrostV-for-Android" class="headerlink" title="BifrostV for Android"></a>BifrostV for Android</h2><pre><code>链接：https://pan.baidu.com/s/1CohXUjoeGpCQcu2OydjRvw&amp;shfl=sharepset 提取码：o8z7</code></pre><p>使用方法和小火箭差不多，参考上面。</p><h1 id="几点注意及后记"><a href="#几点注意及后记" class="headerlink" title="几点注意及后记"></a>几点注意及后记</h1><ol><li>以上下载链接，账号等，不保证一直有效，失效的话请自己百度google一下解决，还是挺好找的。</li><li>如果过程中有什么问题，同样建议先自己搜索研究学习一下。</li><li>实在没弄明白，简单问题可以在下面留言向我提问，但是更建议理清思路发邮件联系我，邮箱地址可以在博客主页找（需要电脑端打开网页）。提问之前强烈建议先读这一篇文章<a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md" target="_blank" rel="noopener"><strong>提问的智慧</strong></a>。</li><li>我懂得也不多，这篇文章其实算是从别人的博客，使用手册之类的文字东拼西凑加一些基础的东西写成的，所以可能问我也没有什么效果。所以聪明的你也可以从下面的参考文献学习学习。</li></ol><p>之前有小伙伴在评论区说v2ray不行了，Trojan是主流，其实对我来说都挺好用的，既然小伙伴提要求了，我就又写了篇Trojan的教程，大家也可以试试。</p><p><a href="http://luyiminggonnabeok.cn/2019/12/07/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%90%AD%E5%BB%BATrojan%E6%A2%AF%E5%AD%90%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">一键脚本搭建Trojan梯子详细教程</a></p><p>谢谢大家。</p><p>putty下载</p><pre><code>链接：https://pan.baidu.com/s/1MGJpnii6nR6A_Rjgd_vkWg 提取码：0b10 </code></pre><h1 id="vps其他玩法"><a href="#vps其他玩法" class="headerlink" title="vps其他玩法"></a>vps其他玩法</h1><p><a href="http://luyiminggonnabeok.cn/2019/12/30/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAtraccar%E6%89%8B%E6%9C%BAGPS%E8%BF%BD%E8%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8/">VPS快速搭建traccar手机GPS追踪服务器</a></p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul><li><a href="https://www.atrandys.com/2019/1579.html" target="_blank" rel="noopener">最稳的上网方式：v2ray+ws+tls一键脚本（CentOS7版）by Atrandys</a></li><li><a href="https://www.v2ray.com/" target="_blank" rel="noopener">v2ray用户手册</a></li><li><a href="https://guide.v2fly.org/" target="_blank" rel="noopener">v2ray配置指南</a></li><li><a href="https://github.com/v2ray/v2ray-core" target="_blank" rel="noopener">v2ray项目地址</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;这篇文章之前写过一遍，但国内搜索引擎都爬不到，再改个名字新放一次。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一年多前写了&lt;a href=&quot;http://luyiminggonnabeok.cn/2018/08/10/%E5%8D%81%E5%88%86%E9%92%9F%E
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>杂乱的River flows in you</title>
@@ -627,6 +603,36 @@
       <category term="Linux" scheme="http://luyiminggonnabeok.cn/tags/Linux/"/>
     
       <category term="shell scripts" scheme="http://luyiminggonnabeok.cn/tags/shell-scripts/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux正则表达式学习笔记</title>
+    <link href="http://luyiminggonnabeok.cn/2018/08/08/Linux%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://luyiminggonnabeok.cn/2018/08/08/Linux%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2018-08-08T13:00:00.000Z</published>
+    <updated>2020-05-04T11:36:47.386Z</updated>
+    
+    <content type="html"><![CDATA[<p>这周培训了 shell scripts的相关内容。预见到将来会用scripts编程处理很多log文件，所以在学scripts之前，首先学习一些regular expression相关的东西，方便接下来编程实现。</p><hr><h3 id="regular-expression概念"><a href="#regular-expression概念" class="headerlink" title="regular expression概念"></a>regular expression概念</h3><blockquote><p>简单的说，正规表示法就是处理字串的方法，他是以行为单位来进行字串的处理行为，正规表示法透过一些特殊符号的辅助，可以让使用者轻易的达到『搜寻/删除/取代』某特定字串的处理程序！<br>正规表示法基本上是一种『表示法』， 只要工具程序支持这种表示法，那么该工具程序就可以用来作为正规表示法的字串处理之用。 例如 vi, grep, awk ,sed 等等工具，因为她们有支持正规表示法， 所以，这些工具就可以使用正规表示法的特殊字节来进行字串的处理。但例如 cp, ls 等命令并未支持正规表示法， 所以就只能使用 bash 自己本身的万用字节而已。</p></blockquote><p>————鸟哥的Linux</p><hr><h3 id="grep命令"><a href="#grep命令" class="headerlink" title="grep命令"></a>grep命令</h3><p>在file中搜索带xxx的行，带行号输出</p><pre><code>grep -n &apos;xxx&apos; filename</code></pre><p>搜索不带xxx的（xxx）反向</p><pre><code>grep -vn &apos;xxx&apos; filename</code></pre><p>搜索XxX忽略大小写</p><pre><code>grep -in &apos;xxx&apos; filename</code></pre><p>搜集合字节</p><pre><code>grep -n &apos;x[xx]x&apos; felename </code></pre><p>反向选择</p><pre><code>grep -n &apos;[^x]xx&apos; filename</code></pre><p>.(小数点)代表一定有一个仍以字节，可以代替任意字符。</p><p>*（星号）代表重复前一个字节。</p><p>搜寻的XX在行首</p><pre><code>grep -n &apos;^xx&apos; filename</code></pre><p>搜寻的XX在行尾部</p><pre><code>grep -n &apos;xx$&apos; filename</code></pre><p>限定搜索范围（如2-5个o）</p><pre><code>grep -n &apos;go\{2,5}g&apos; filename</code></pre><p>限定搜索范围（2以上）</p><pre><code>grep -n &apos;go\{2,\}g&apos; filename</code></pre><hr><h3 id="sed命令"><a href="#sed命令" class="headerlink" title="sed命令"></a>sed命令</h3><p>行处理工具</p><blockquote><p>sed 本身也是一个管线命令，可以分析 standard input 的啦！ 而且 sed 还可以将数据进行取代、删除、新增、撷取特定行等等的功能。</p></blockquote><p>————鸟哥linux</p><p>d删除，a添加，c取代，p打印行, s/…/…/g搜寻取代, i直接修改内容</p><p>删除输出的2-5行</p><pre><code>|sed &apos;2,5d&apos;</code></pre><p>删除3-最后一行</p><pre><code>|sed &apos;3,$d&apos;</code></pre><p>在第2行后新增文字</p><pre><code>|sed &apos;2a have a nice day&apos;</code></pre><p>取代2-5行</p><pre><code>|sed &apos;2,5c have a nice day&apos;</code></pre><p>打印2-5行</p><pre><code>|sed -n &apos;2,5p&apos;</code></pre><p>搜寻取代</p><pre><code>|sed &apos;s/...../...../g&apos;</code></pre><p>每行以.结尾改为！</p><pre><code>sed -i &apos;s/\.$/\!/g&apos; filename</code></pre><p>在file最后一轧不过加入xxx</p><pre><code>sed -i &apos;$a xxx&apos; filename</code></pre><hr><h3 id="延伸正则表达式"><a href="#延伸正则表达式" class="headerlink" title="延伸正则表达式"></a>延伸正则表达式</h3><p>egrep=grep -E  </p><table><thead><tr><th>RE字符</th><th>意义与范例</th></tr></thead><tbody><tr><td>+</td><td>重复一个或一个以上前一个RE<br>在gd中搜索2个o以上<br>egrep -n  ‘go+d’ filename</td></tr><tr><td>?</td><td>0个或者1个前一个RE字符<br>egrep -n ‘go?d’ filename</td></tr></tbody></table><p>|：用或的方式找出数个字串  </p><pre><code>egrep -n &apos;gd|good|dog&apos; filename</code></pre><p>(): 找出群组字串（和/与）</p><pre><code>egrep -n &apos;g(la|oo)d&apos; filename</code></pre><p>()+: 多个重复群组判别</p><pre><code>echo &apos;AxyzxyzxyzxyzxyzC&apos;|egrep &apos;A(xyz)+C&apos;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;这周培训了 shell scripts的相关内容。预见到将来会用scripts编程处理很多log文件，所以在学scripts之前，首先学习一些regular expression相关的东西，方便接下来编程实现。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;regular-expres
+      
+    
+    </summary>
+    
+    
+      <category term="学习" scheme="http://luyiminggonnabeok.cn/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Linux" scheme="http://luyiminggonnabeok.cn/tags/Linux/"/>
+    
+      <category term="正则表达式" scheme="http://luyiminggonnabeok.cn/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
   </entry>
   
