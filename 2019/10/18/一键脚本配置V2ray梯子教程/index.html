@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://luyiminggonnabeok.cn/images/pasted-54.png">
 <meta property="og:image" content="http://luyiminggonnabeok.cn/images/pasted-55.png">
 <meta property="article:published_time" content="2019-10-18T07:53:00.000Z">
-<meta property="article:modified_time" content="2020-05-04T11:36:48.136Z">
+<meta property="article:modified_time" content="2020-06-17T13:03:29.734Z">
 <meta property="article:author" content="酉荻">
 <meta property="article:tag" content="Vmess">
 <meta name="twitter:card" content="summary">
@@ -481,16 +481,15 @@
 <pre><code>cd /usr/src &amp;&amp; wget -N --no-check-certificate &quot;https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; ./tcp.sh</code></pre><p>在弹出的界面选1，安装内核，安装完之后vps会重启，putty会断开连接，重启等待1到2分钟，在重复刚才的步骤用putty登陆vps，输入以下代码，在弹出的界面输入5，使用BBR。</p>
 <pre><code>cd /usr/src &amp;&amp; ./tcp.sh</code></pre><p>之后显示BBR启动成功，这样我们服务端架设的步骤就完全完成了。</p>
 <h1 id="客户端使用"><a href="#客户端使用" class="headerlink" title="客户端使用"></a>客户端使用</h1><p>v2ray的客户端很多，这里主要介绍win，ios，安卓下最常用的三个客户端软件。</p>
-<h2 id="v2rayN-for-window"><a href="#v2rayN-for-window" class="headerlink" title="v2rayN for window"></a>v2rayN for window</h2><pre><code>链接: https://pan.baidu.com/s/1eT1M4RCAHLcl9h1xHYEgjg&amp;shfl=shareset
-提取码: 4nfs</code></pre><p>下载下来解压点进去文件夹，打开v2rayN.exe,右下角出现如下小图标：</p>
+<h2 id="v2rayN-for-Window"><a href="#v2rayN-for-Window" class="headerlink" title="v2rayN for Window"></a>v2rayN for Window</h2><pre><code>链接：https://pan.baidu.com/s/1XEYUro4yP6YSj7asjiA3BQ 
+  提取码：rtzm </code></pre><p>下载下来解压点进去文件夹，打开v2rayN.exe,右下角出现如下小图标：</p>
 <p><img src="/images/pasted-54.png" alt="upload successful"></p>
 <p>双击左键点开，选择服务器，添加vmess服务器。将之前在putty中记下的参数输入这里，如下图，然后点击确定。注意这里路径这一栏在之前记录的参数基础上前面加上“/”。如图。<br><img src="/images/pasted-55.png" alt="upload successful"><br>之后就配置成功了，建议在配好的服务器上单击右键选择“批量导出分享URL至粘贴板”，然后在记事本中保存，之后会用在配置手机客户端里。</p>
 <p>之后点右上角×关闭主界面，在右下角小图标单击右键。在服务器一栏勾选上已经配好的服务器，点击启用Http代理，代理模式选择全局模式。之后就可以开心的科学上网了。提醒一下记得不用的时候，按顺序先把启用http代理勾选取消，之后退出客户端，最后关电脑。如果有没有按顺序操作，再次开机发现上不了网了，请在这里的小电脑点右键，打开“网络和Internet设置”→代理→手动设置代理，将使用代理服务器一栏关闭。</p>
-<h2 id="Shadowrocket-for-ios"><a href="#Shadowrocket-for-ios" class="headerlink" title="Shadowrocket for ios"></a>Shadowrocket for ios</h2><p>其实V2ray在ios上最好用的客户端是Kitsunebi，可是在大陆App store里下不到，国外也是收费的。新版本的Shadowrocket也支持Vmess+TLS+ws的配置，所以我就用了Shadowrocket（以下就代称小火箭了），虽然小火箭也要钱，不能在大陆App store下载，但是网上共享账号很多，大家可以多搜一搜，关键词“Shadowrocket/小火箭 ios 共享账号”。我这里提供两组账号，大家试一试，不保证好用，因为这种多人共享的账号很容易被苹果封了，账号时效性很强，不好用大家就自己找找了。</p>
+<h2 id="v2rayU-for-Mac"><a href="#v2rayU-for-Mac" class="headerlink" title="v2rayU for Mac"></a>v2rayU for Mac</h2><p>用法参考上面，逻辑差不多</p>
+<pre><code>链接：https://pan.baidu.com/s/1YwztHnkYW0Vcf2NnAhutYw 
+提取码：7jgb</code></pre><h2 id="Shadowrocket-for-ios"><a href="#Shadowrocket-for-ios" class="headerlink" title="Shadowrocket for ios"></a>Shadowrocket for ios</h2><p>其实V2ray在ios上最好用的客户端是Kitsunebi，可是在大陆App store里下不到，国外也是收费的。新版本的Shadowrocket也支持Vmess+TLS+ws的配置，所以我就用了Shadowrocket（以下就代称小火箭了），虽然小火箭也要钱，不能在大陆App store下载，但是网上共享账号很多，大家可以多搜一搜，关键词“Shadowrocket/小火箭 ios 共享账号”。我这里提供一组账号，大家试一试，不保证好用，因为这种多人共享的账号很容易被苹果封了，账号时效性很强，不好用大家就自己找找了（可以去万能的淘宝找，七八块一个带小火箭的共享账户）。</p>
 <pre><code>app store账号：hadadreammm@gmail.com
-密码：As778899
-
-app store账号：hadadreammm@gmail.com
 密码：As778899</code></pre><p>注意下完小火箭后一定马上把账号退了，换回自己的账号。</p>
 <p>之后把刚才在电脑端导出的，形如vmess://开头的链接复制到手机里，在手机上直接复制，然后打开小火箭，小火箭就会自动识别到已经复制好的链接，将服务器添加进来，之后把最上面的链接打开就好了。（软件会要求使用手机vpn，请允许）</p>
 <h2 id="BifrostV-for-Android"><a href="#BifrostV-for-Android" class="headerlink" title="BifrostV for Android"></a>BifrostV for Android</h2><pre><code>链接：https://pan.baidu.com/s/1CohXUjoeGpCQcu2OydjRvw&amp;shfl=sharepset 
@@ -504,9 +503,8 @@ app store账号：hadadreammm@gmail.com
 <p>之前有小伙伴在评论区说v2ray不行了，Trojan是主流，其实对我来说都挺好用的，既然小伙伴提要求了，我就又写了篇Trojan的教程，大家也可以试试。</p>
 <p><a href="http://luyiminggonnabeok.cn/2019/12/07/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%90%AD%E5%BB%BATrojan%E6%A2%AF%E5%AD%90%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">一键脚本搭建Trojan梯子详细教程</a></p>
 <p>谢谢大家。</p>
-<p>putty下载</p>
-<pre><code>链接：https://pan.baidu.com/s/1MGJpnii6nR6A_Rjgd_vkWg 
-提取码：0b10 </code></pre><h1 id="vps其他玩法"><a href="#vps其他玩法" class="headerlink" title="vps其他玩法"></a>vps其他玩法</h1><p><a href="http://luyiminggonnabeok.cn/2019/12/30/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAtraccar%E6%89%8B%E6%9C%BAGPS%E8%BF%BD%E8%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8/">VPS快速搭建traccar手机GPS追踪服务器</a></p>
+<h2 id="putty下载"><a href="#putty下载" class="headerlink" title="putty下载"></a>putty下载</h2><pre><code>链接：https://pan.baidu.com/s/1Z4QwMk27LvssFNKilKZHFg 
+  提取码：a6fg</code></pre><h1 id="vps其他玩法"><a href="#vps其他玩法" class="headerlink" title="vps其他玩法"></a>vps其他玩法</h1><p><a href="http://luyiminggonnabeok.cn/2019/12/30/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAtraccar%E6%89%8B%E6%9C%BAGPS%E8%BF%BD%E8%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8/">VPS快速搭建traccar手机GPS追踪服务器</a></p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
 <li><a href="https://www.atrandys.com/2019/1579.html" target="_blank" rel="noopener">最稳的上网方式：v2ray+ws+tls一键脚本（CentOS7版）by Atrandys</a></li>
 <li><a href="https://www.v2ray.com/" target="_blank" rel="noopener">v2ray用户手册</a></li>
@@ -639,7 +637,7 @@ app store账号：hadadreammm@gmail.com
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -704,7 +702,7 @@ app store账号：hadadreammm@gmail.com
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#V2ray-tls-ws介绍"><span class="nav-number">1.</span> <span class="nav-text">V2ray+tls+ws介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#购买VPS"><span class="nav-number">2.</span> <span class="nav-text">购买VPS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#购买域名"><span class="nav-number">3.</span> <span class="nav-text">购买域名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脚本安装v2ray服务端"><span class="nav-number">4.</span> <span class="nav-text">脚本安装v2ray服务端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端使用"><span class="nav-number">5.</span> <span class="nav-text">客户端使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v2rayN-for-window"><span class="nav-number">5.1.</span> <span class="nav-text">v2rayN for window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shadowrocket-for-ios"><span class="nav-number">5.2.</span> <span class="nav-text">Shadowrocket for ios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BifrostV-for-Android"><span class="nav-number">5.3.</span> <span class="nav-text">BifrostV for Android</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#几点注意及后记"><span class="nav-number">6.</span> <span class="nav-text">几点注意及后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vps其他玩法"><span class="nav-number">7.</span> <span class="nav-text">vps其他玩法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">8.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#V2ray-tls-ws介绍"><span class="nav-number">1.</span> <span class="nav-text">V2ray+tls+ws介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#购买VPS"><span class="nav-number">2.</span> <span class="nav-text">购买VPS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#购买域名"><span class="nav-number">3.</span> <span class="nav-text">购买域名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#脚本安装v2ray服务端"><span class="nav-number">4.</span> <span class="nav-text">脚本安装v2ray服务端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#客户端使用"><span class="nav-number">5.</span> <span class="nav-text">客户端使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v2rayN-for-Window"><span class="nav-number">5.1.</span> <span class="nav-text">v2rayN for Window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v2rayU-for-Mac"><span class="nav-number">5.2.</span> <span class="nav-text">v2rayU for Mac</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shadowrocket-for-ios"><span class="nav-number">5.3.</span> <span class="nav-text">Shadowrocket for ios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BifrostV-for-Android"><span class="nav-number">5.4.</span> <span class="nav-text">BifrostV for Android</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#几点注意及后记"><span class="nav-number">6.</span> <span class="nav-text">几点注意及后记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#putty下载"><span class="nav-number">6.1.</span> <span class="nav-text">putty下载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vps其他玩法"><span class="nav-number">7.</span> <span class="nav-text">vps其他玩法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">8.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
