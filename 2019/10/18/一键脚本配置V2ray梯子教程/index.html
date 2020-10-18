@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Vmess," />
+  <meta name="keywords" content="梯子,Vmess,科学上网,一键脚本," />
 
 
 
@@ -88,7 +88,7 @@
 
 <meta name="description" content="一年多前写了一篇脚本搭建SSR梯子的教程，比较简陋粗糙，而且其实写那篇教程的时候自己已经不用SSR了，主要是容易被识别然后被封ip，还是不太方便。最近一年多一直使用v2ray+tls+ws的方法科学上网，还是比较稳定，速度也不慢于SSR。最早使用的时候没有脚本，自己用apache做https的服务器做转发，配起来还是有些麻烦，之后Atrandy写了一键脚本，就方便多了，Atrandy的博客好像已">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一键脚本配置V2ray+WS+TLS+Web梯子详细教程">
+<meta property="og:title" content="一键脚本配置V2ray+WS+TLS+Web科学上网梯子详细教程">
 <meta property="og:url" content="http://luyiminggonnabeok.cn/2019/10/18/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E9%85%8D%E7%BD%AEV2ray%E6%A2%AF%E5%AD%90%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="酉荻的博客">
 <meta property="og:description" content="一年多前写了一篇脚本搭建SSR梯子的教程，比较简陋粗糙，而且其实写那篇教程的时候自己已经不用SSR了，主要是容易被识别然后被封ip，还是不太方便。最近一年多一直使用v2ray+tls+ws的方法科学上网，还是比较稳定，速度也不慢于SSR。最早使用的时候没有脚本，自己用apache做https的服务器做转发，配起来还是有些麻烦，之后Atrandy写了一键脚本，就方便多了，Atrandy的博客好像已">
@@ -105,9 +105,12 @@
 <meta property="og:image" content="http://luyiminggonnabeok.cn/images/pasted-54.png">
 <meta property="og:image" content="http://luyiminggonnabeok.cn/images/pasted-55.png">
 <meta property="article:published_time" content="2019-10-18T07:53:00.000Z">
-<meta property="article:modified_time" content="2020-10-13T10:28:47.897Z">
+<meta property="article:modified_time" content="2020-10-18T03:51:49.486Z">
 <meta property="article:author" content="酉荻">
+<meta property="article:tag" content="梯子">
 <meta property="article:tag" content="Vmess">
+<meta property="article:tag" content="科学上网">
+<meta property="article:tag" content="一键脚本">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://luyiminggonnabeok.cn/images/pasted-41.png">
 
@@ -170,7 +173,7 @@
   </script>
 
 
-  <title>一键脚本配置V2ray+WS+TLS+Web梯子详细教程 | 酉荻的博客</title>
+  <title>一键脚本配置V2ray+WS+TLS+Web科学上网梯子详细教程 | 酉荻的博客</title>
   
 
 
@@ -363,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一键脚本配置V2ray+WS+TLS+Web梯子详细教程</h1>
+          <h1 class="post-title" itemprop="name headline">一键脚本配置V2ray+WS+TLS+Web科学上网梯子详细教程</h1>
         
 
         <div class="post-meta">
@@ -498,11 +501,11 @@
 <li>我懂得也不多，这篇文章其实算是从别人的博客，使用手册之类的文字东拼西凑加一些基础的东西写成的，所以可能问我也没有什么效果。所以聪明的你也可以从下面的参考文献学习学习。</li>
 </ol>
 <p>之前有小伙伴在评论区说v2ray不行了，Trojan是主流，其实对我来说都挺好用的，既然小伙伴提要求了，我就又写了篇Trojan的教程，大家也可以试试。</p>
-<p><a href="http://luyiminggonnabeok.cn/2019/12/07/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%90%AD%E5%BB%BATrojan%E6%A2%AF%E5%AD%90%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">一键脚本搭建Trojan梯子详细教程</a></p>
+<p><a href="http://luyiminggonnabeok.cn/2019/12/07/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%90%AD%E5%BB%BATrojan%E6%A2%AF%E5%AD%90%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/">一键脚本搭建Trojan科学上网梯子详细教程</a></p>
 <p>谢谢大家。</p>
 <p>两篇最新的协议。。</p>
-<p><a href="http://luyiminggonnabeok.cn/2020/10/13/Vless-ws-tls%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/">Vless+ws+tls一键脚本教程</a></p>
-<p><a href="http://luyiminggonnabeok.cn/2020/10/13/Naive-ws-tls%E6%A2%AF%E5%AD%90%E6%90%AD%E5%BB%BA%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/">Naive+ws+tls梯子搭建一键脚本教程</a></p>
+<p><a href="http://luyiminggonnabeok.cn/2020/10/13/Vless-ws-tls%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/">Vless+ws+tls科学上网梯子一键脚本教程</a></p>
+<p><a href="http://luyiminggonnabeok.cn/2020/10/13/Naive-ws-tls%E6%A2%AF%E5%AD%90%E6%90%AD%E5%BB%BA%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B/">Naive+ws+tls科学上网梯子搭建一键脚本教程</a></p>
 <h2 id="putty下载"><a href="#putty下载" class="headerlink" title="putty下载"></a>putty下载</h2><pre><code>https://rachel.heartango.com/putty-64bit-0.73-installer.msi</code></pre><h1 id="vps其他玩法"><a href="#vps其他玩法" class="headerlink" title="vps其他玩法"></a>vps其他玩法</h1><p><a href="http://luyiminggonnabeok.cn/2019/12/30/%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAtraccar%E6%89%8B%E6%9C%BAGPS%E8%BF%BD%E8%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8/">VPS快速搭建traccar手机GPS追踪服务器</a></p>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
 <li><a href="https://www.atrandys.com/2019/1579.html" target="_blank" rel="noopener">最稳的上网方式：v2ray+ws+tls一键脚本（CentOS7版）by Atrandys</a></li>
@@ -527,7 +530,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/%E6%A2%AF%E5%AD%90/" rel="tag"># 梯子</a>
+          
             <a href="/tags/Vmess/" rel="tag"># Vmess</a>
+          
+            <a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag"># 科学上网</a>
+          
+            <a href="/tags/%E4%B8%80%E9%94%AE%E8%84%9A%E6%9C%AC/" rel="tag"># 一键脚本</a>
           
         </div>
       
@@ -658,7 +667,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
